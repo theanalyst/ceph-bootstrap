@@ -1,3 +1,5 @@
+set -x
+
 sudo apt-get install -y apache2 libapache2-mod-fastcgi radosgw radosgw-agent
 
 if !grep -Fq ServerName /etc/apache2/apache2.conf
