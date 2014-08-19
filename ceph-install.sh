@@ -5,14 +5,14 @@ sudo apt-get install -y ceph-deploy
 
 HOST=$(hostname)
 ceph-deploy purge $HOST
-ceph-deploy new $HOST --release firefly
+ceph-deploy new $HOST
 
 cat <<EOF >> ceph.conf
 osd pool default size=2
 osd crush chooseleaf type = 0
 EOF
 
-ceph-deploy install $HOST
+ceph-deploy install $HOST --release firefly
 ceph-deploy mon create-initial $HOST
 
 sudo mkdir /var/local/osd0
