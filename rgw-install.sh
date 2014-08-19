@@ -2,7 +2,7 @@ sudo apt-get install -y apache2 libapache2-mod-fastcgi radosgw radosgw-agent
 
 if [[ grep -Fq ServerName /etc/apache2/apache2.conf ]]
 then
-    sudo echo "Servername `hostname -f`" >> /etc/apache2/apache2.conf
+    echo "Servername `hostname -f`" | sudo tee -a /etc/apache2/apache2.conf
 fi
 
 sudo a2enmod rewrite
@@ -23,7 +23,7 @@ sudo ceph -k /etc/ceph/ceph.client.admin.keyring auth add client.radosgw.gateway
 
 echo "Add a Gateway Configuration to Ceph"
 
-sudo cat <<EOF >> /etc/ceph/ceph.conf
+sudo tee -a /etc/ceph/ceph.conf > /dev/null <<EOF
 [client.radosgw.gateway]
 host = `hostname -s`
 keyring = /etc/ceph/ceph.client.radosgw.keyring
@@ -31,8 +31,8 @@ rgw socket path = /var/run/ceph/ceph.radosgw.gateway.fastcgi.sock
 log file = /var/log/ceph/client.radosgw.gateway.log 
 EOF
 
-sudo cat << EOF > /var/www/s3gw.fcgi
 
+sudo tee /var/www/s3gw.fcgi > /dev/null <<EOF
 #!/bin/sh
 exec /usr/bin/radosgw -c /etc/ceph/ceph.conf -n client.radosgw.gateway
 EOF
@@ -45,7 +45,7 @@ echo "Creating a Data directory"
 
 sudo mkdir -p /var/lib/ceph/radosgw/ceph-radosgw.gateway
 
-cat <<EOF >> /etc/apache/sites-available/rgw.conf
+sudo tee /etc/apache/sites-available/rgw.conf > /dev/null <<EOF
 FastCgiExternalServer /var/www/s3gw.fcgi -socket /var/run/ceph/ceph.radosgw.gateway.fastcgi.sock
 
 <VirtualHost *:80>
