@@ -19,8 +19,8 @@ sudo mkdir /var/local/osd0
 sudo mkdir /var/local/osd1
 sudo mkdir /var/local/osd2
 
-ceph-deploy osd prepare $host:/var/local/osd0 $host:/var/local/osd1 $host:/var/local/osd2
-ceph-deploy osd activate  $host:/var/local/osd0 $host:/var/local/osd1 $host:/var/local/osd2
+ceph-deploy osd prepare $HOST:/var/local/osd0 $HOST:/var/local/osd1 $HOST:/var/local/osd2
+ceph-deploy osd activate  $host:/var/local/osd0 $host:/var/local/osd1 $HOST:/var/local/osd2
 sleep 30 # Give some time for ceph to work its magic
 sudo ceph health
 
