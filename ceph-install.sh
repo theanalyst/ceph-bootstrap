@@ -3,8 +3,15 @@ set -x
 
 sudo apt-get install -y ceph-deploy
 
-HOST=$(hostname)
+ceph-remove () {
 ceph-deploy purge $HOST
+ceph-deploy purgedata $HOST
+ceph-deploy forgetkeys
+}
+
+
+HOST=$(hostname)
+ceph-remove
 ceph-deploy new $HOST
 
 cat <<EOF >> ceph.conf
