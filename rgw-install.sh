@@ -23,14 +23,16 @@ sudo ceph -k /etc/ceph/ceph.client.admin.keyring auth add client.radosgw.gateway
 
 echo "Add a Gateway Configuration to Ceph"
 
-sudo tee -a /etc/ceph/ceph.conf > /dev/null <<EOF
+if !grep -Fq "client.radosgw.gateway" /etc/ceph/ceph.conf
+then
+    sudo tee -a /etc/ceph/ceph.conf > /dev/null <<EOF
 [client.radosgw.gateway]
 host = `hostname -s`
 keyring = /etc/ceph/ceph.client.radosgw.keyring
 rgw socket path = /var/run/ceph/ceph.radosgw.gateway.fastcgi.sock
 log file = /var/log/ceph/client.radosgw.gateway.log 
 EOF
-
+fi
 
 sudo tee /var/www/s3gw.fcgi > /dev/null <<EOF
 #!/bin/sh
