@@ -7,8 +7,12 @@ ceph-remove () {
 ceph-deploy purge $HOST
 ceph-deploy purgedata $HOST
 ceph-deploy forgetkeys
-}
 
+for i in 0 1 2
+do
+    [ -d /var/local/osd$i ] && sudo rm -rf /var/local/osd$i
+done
+}
 
 HOST=$(hostname)
 ceph-remove
