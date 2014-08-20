@@ -49,7 +49,7 @@ echo "Creating a Data directory"
 
 sudo mkdir -p /var/lib/ceph/radosgw/ceph-radosgw.gateway
 
-sudo tee /etc/apache/sites-available/rgw.conf > /dev/null <<EOF
+sudo tee /etc/apache2/sites-available/rgw.conf > /dev/null <<EOF
 FastCgiExternalServer /var/www/s3gw.fcgi -socket /var/run/ceph/ceph.radosgw.gateway.fastcgi.sock
 
 <VirtualHost *:80>
