@@ -1,6 +1,7 @@
 # A very minimal ceph install script, using ceph-deploy
 set -x
-
+# Creating a directory based on timestamp..not unique enough
+mkdir -p ~/ceph-deploy/install-$(date +%Y%m%d%H%M%S) && cd $_
 sudo apt-get install -y ceph-deploy
 
 ceph-remove () {
