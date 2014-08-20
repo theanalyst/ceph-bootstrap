@@ -38,6 +38,12 @@ host = `hostname -s`
 keyring = /etc/ceph/ceph.client.radosgw.keyring
 rgw socket path = /var/run/ceph/ceph.radosgw.gateway.fastcgi.sock
 log file = /var/log/ceph/client.radosgw.gateway.log 
+rgw keystone url = http://127.0.0.1:35357
+rgw keystone admin token = nova
+rgw keystone accepted roles = admin, Member
+rgw keystone token cache size = 100
+rgw keystone revocation interval = 600
+rgw s3 auth use keystone = true
 EOF
 fi
 
