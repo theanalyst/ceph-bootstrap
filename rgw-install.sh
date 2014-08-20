@@ -14,6 +14,11 @@ echo "Restarting  Apache so that the foregoing changes take effect."
 
 sudo service apache2 restart
 
+if [[ -f /etc/ceph/ceph.client.radosgw.keyring ]]
+then
+    sudo ceph auth del client.radosgw.gateway
+fi
+
 sudo ceph-authtool --create-keyring /etc/ceph/ceph.client.radosgw.keyring
 sudo chmod +r /etc/ceph/ceph.client.radosgw.keyring
 
