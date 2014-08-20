@@ -4,7 +4,7 @@ sudo apt-get install -y apache2 libapache2-mod-fastcgi radosgw radosgw-agent
 
 if ! grep -Fq ServerName /etc/apache2/apache2.conf
 then
-    echo "Servername `hostname -f`" | sudo tee -a /etc/apache2/apache2.conf
+    echo "ServerName `hostname -f`" | sudo tee -a /etc/apache2/apache2.conf
 fi
 
 sudo a2enmod rewrite
