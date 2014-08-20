@@ -2,7 +2,7 @@ set -x
 
 sudo apt-get install -y apache2 libapache2-mod-fastcgi radosgw radosgw-agent
 
-if !grep -Fq ServerName /etc/apache2/apache2.conf
+if ! grep -Fq ServerName /etc/apache2/apache2.conf
 then
     echo "Servername `hostname -f`" | sudo tee -a /etc/apache2/apache2.conf
 fi
@@ -25,7 +25,7 @@ sudo ceph -k /etc/ceph/ceph.client.admin.keyring auth add client.radosgw.gateway
 
 echo "Add a Gateway Configuration to Ceph"
 
-if !grep -Fq "client.radosgw.gateway" /etc/ceph/ceph.conf
+if ! grep -Fq "client.radosgw.gateway" /etc/ceph/ceph.conf
 then
     sudo tee -a /etc/ceph/ceph.conf > /dev/null <<EOF
 [client.radosgw.gateway]
