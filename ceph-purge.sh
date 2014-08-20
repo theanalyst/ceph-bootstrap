@@ -13,7 +13,7 @@ done
 
 # remove rgw related confs
 sudo rm /var/www/s3gw.fcgi
-sudo a2dissite rgw && sudo rm /etc/apache/sites-available/rgw.conf
+sudo a2dissite rgw && sudo rm /etc/apache2/sites-available/rgw.conf
 
 # remove the ceph packages
 sudo apt-get -y  purge ceph
