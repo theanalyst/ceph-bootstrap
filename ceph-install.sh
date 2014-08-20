@@ -15,7 +15,7 @@ do
 done
 }
 
-HOST=$(hostname)
+HOST=$(hostname -s)
 ceph-remove
 ceph-deploy new $HOST
 
