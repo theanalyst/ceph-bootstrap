@@ -16,8 +16,9 @@ done
 }
 
 HOST=$(hostname -s)
+FQDN=$(hostname -f)
 ceph-remove
-ceph-deploy new $HOST
+ceph-deploy new $HOST:$FQDN
 
 cat <<EOF >> ceph.conf
 osd pool default size=2
