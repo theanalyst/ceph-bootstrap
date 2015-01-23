@@ -13,7 +13,7 @@ for i in 0 1 2
 do
     [ -d /var/local/osd$i ] && sudo rm -rf /var/local/osd$i
 done
-[ -f /etc/ceph/ceph.conf] && sudo rm -rf /etc/ceph/ceph.conf
+[ -f /etc/ceph/ceph.conf ] && sudo rm -rf /etc/ceph/ceph.conf
 }
 
 HOST=$(hostname -s)
