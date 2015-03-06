@@ -2,7 +2,7 @@
 set -x
 # Creating a directory based on timestamp..not unique enough
 mkdir -p ~/ceph-deploy/install-$(date +%Y%m%d%H%M%S) && cd $_
-sudo apt-get install -y ceph-deploy
+sudo apt-get update && sudo apt-get install -y ceph-deploy
 
 ceph-remove () {
 ceph-deploy purge $HOST
