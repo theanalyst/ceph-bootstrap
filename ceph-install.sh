@@ -1,5 +1,7 @@
 # A very minimal ceph install script, using ceph-deploy
 set -x
+
+RELEASE=${1:firefly}
 # Creating a directory based on timestamp..not unique enough
 mkdir -p ~/ceph-deploy/install-$(date +%Y%m%d%H%M%S) && cd $_
 sudo apt-get update && sudo apt-get install -y ceph-deploy
@@ -26,7 +28,7 @@ osd pool default size=2
 osd crush chooseleaf type = 0
 EOF
 
-ceph-deploy install $HOST --release firefly
+ceph-deploy install $HOST --release $RELEASE
 ceph-deploy mon create-initial $HOST
 
 sudo mkdir /var/local/osd0
