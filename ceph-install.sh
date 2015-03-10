@@ -4,11 +4,12 @@ set -x
 RELEASE=${1:firefly}
 # Creating a directory based on timestamp..not unique enough
 mkdir -p ~/ceph-deploy/install-$(date +%Y%m%d%H%M%S) && cd $_
-sudo apt-get update && sudo apt-get install -y ceph-deploy
-
 wget -q -O- 'https://ceph.com/git/?p=ceph.git;a=blob_plain;f=keys/release.asc' | sudo apt-key add -
 
-sudo apt-add-repository 'deb http://ceph.com/debian-firefly/ $RELEASE main'
+sudo apt-add-repository `deb http://ceph.com/debian-firefly/ $RELEASE main`
+
+sudo apt-get update && sudo apt-get install -y ceph-deploy
+
 
 ceph-remove () {
 ceph-deploy purge $HOST
