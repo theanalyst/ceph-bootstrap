@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+sudo apt-get install -y radosgw radosgw-agent
 
 zone=${1:-us-west}
 zone2=${2:-us-east}
