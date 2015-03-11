@@ -90,7 +90,7 @@ rgw zone = $zone
 rgw zone root pool = .$zone.rgw.root
 keyring = /etc/ceph/ceph.client.radosgw.keyring
 rgw dns name = $(hostname -s)
-rgw socket path = /var/run/ceph/$name.sock
+rgw socket path = /var/run/ceph/$zone.sock
 host = $(hostname -s)
 
 [client.radosgw.$zone2]
@@ -100,7 +100,7 @@ rgw zone = $zone2
 rgw zone root pool = .$zone2.rgw.root
 keyring = /etc/ceph/ceph.client.radosgw.keyring
 rgw dns name = $(hostname-s)
-rgw socket path = /var/run/ceph/$name.sock
+rgw socket path = /var/run/ceph/$zone2.sock
 host = $(hostname -s)
 EOF
 fi
