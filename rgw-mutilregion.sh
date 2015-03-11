@@ -189,5 +189,5 @@ sudo radosgw-admin zone set --rgw-zone=$zone --infile $zone.json --name client.r
 
 sudo radosgw-admin regionmap update --name client.radosgw.$zone
 
-radosgw-admin user create --uid="$zone" --display-name="Region-$zone" --name client.radosgw.$zone-1 --system
-radosgw-admin user create --uid="$zone2" --display-name="Region-$zone2" --name client.radosgw.$zone2-1 --system
+radosgw-admin user create --uid="$zone" --display-name="Region-$zone" --name client.radosgw.$zone --system
+radosgw-admin user create --uid="$zone2" --display-name="Region-$zone2" --name client.radosgw.$zone2 --system
