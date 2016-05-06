@@ -1,17 +1,17 @@
 # A very minimal ceph install script, using ceph-deploy
 set -x
 
-RELEASE=${1:firefly}
+RELEASE=${1:hammer}
 # Creating a directory based on timestamp..not unique enough
 mkdir -p ~/ceph-deploy/install-$(date +%Y%m%d%H%M%S) && cd $_
-wget -q -O- 'https://ceph.com/git/?p=ceph.git;a=blob_plain;f=keys/release.asc' | sudo apt-key add -
+#wget -q -O- 'https://ceph.com/git/?p=ceph.git;a=blob_plain;f=keys/release.asc' | sudo apt-key add -
 
-echo deb http://ceph.com/debian-$RELEASE/ $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph.list
+#echo deb http://ceph.com/debian-$RELEASE/ $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph.list
 
 # sudo apt-add-repository `deb http://ceph.com/debian-firefly/ $RELEASE main`
 
-sudo apt-get update && sudo apt-get install -y ceph-deploy
-
+#sudo apt-get update && sudo apt-get install -y ceph-deploy
+#sudo zypper install -n ceph-deploy
 
 ceph-remove () {
 ceph-deploy purge $HOST
@@ -35,12 +35,12 @@ osd pool default size=2
 osd crush chooseleaf type = 0
 EOF
 
-ceph-deploy install $HOST --release $RELEASE
+ceph-deploy install $HOST 
 ceph-deploy mon create-initial $HOST
 
-sudo mkdir /var/local/osd0
-sudo mkdir /var/local/osd1
-sudo mkdir /var/local/osd2
+sudo mkdir -p /var/local/osd0
+sudo mkdir -p /var/local/osd1
+sudo mkdir -p /var/local/osd2
 
 ceph-deploy osd prepare $HOST:/var/local/osd0 $HOST:/var/local/osd1 $HOST:/var/local/osd2
 ceph-deploy osd activate  $HOST:/var/local/osd0 $HOST:/var/local/osd1 $HOST:/var/local/osd2
